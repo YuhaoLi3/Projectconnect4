@@ -1,4 +1,7 @@
 public class Connect4Runner {
-    Board board = new Board();
+    public static void Connect4Runner(String[] args) {
+        Board board = new Board();
+        board.start();
+    }
 
 }
