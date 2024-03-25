@@ -1,14 +1,12 @@
-import java.util.Scanner;
-public class Players extends Board{
-    public static String piece = "";
-    public static void setPiece(String x) {
-        piece = x;
+public class Players implements GamePiece {
+    private String symbol;
+
+    public Players(String symbol) {
+        this.symbol = symbol;
     }
 
-    public String getPiece() {
-        return piece;
+    @Override
+    public String getSymbol() {
+        return symbol;
     }
-//    public void placePiece(int columns, String piece){
-//        for(int i = 0;i<grid[])
-//    }
 }

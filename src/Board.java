@@ -1,25 +1,42 @@
-import java.util.Arrays;
 import java.util.Scanner;
+
 public class Board {
-        public String[][] grid;
+        private GamePiece[][] grid;
         private Scanner scan;
 
-        public Board(){
-                this.grid = new String[8][8];
+        public Board(int rows, int columns) {
+                this.grid = new GamePiece[rows][columns];
                 this.scan = new Scanner(System.in);
         }
-        public void start(){
-//                System.out.println("welcome to yuhao's connect 4 game!~!");
-//                System.out.println("what will player 1 be?: ");
-//                String player1Piece = scan.nextLine();
-//                Player1.setPiece(player1Piece);
-//                System.out.println("what will player 2 be?: ");
-//                String player2Piece = scan.nextLine();
-//                Player2.setPiece(player2Piece);
-                System.out.println(Arrays.deepToString(grid).replace("],", "],\n"));
 
-
+        public boolean placePiece(int column, GamePiece piece) {
+                for (int i = grid.length - 1; i >= 0; i--) {
+                        if (grid[i][column] == null) {
+                                grid[i][column] = piece;
+                                return true;
+                        }
+                }
+                return false; // Column is full
         }
 
-
+        public void printBoard() {
+                for (GamePiece[] row : grid) {
+                        for (GamePiece cell : row) {
+                                if (cell == null) {
+                                        System.out.print("_    ");
+                                } else {
+                                        String symbol = ((GamePiece) cell).getSymbol();
+                                        System.out.print(symbol);
+                                        int space = 4 - symbol.length();
+                                        for (int i = 0; i < space; i++) {
+                                                System.out.print(" ");
+                                        }
+                                }
+                        }
+                        System.out.println();
+                }
+        }
 }
+
+
+
