@@ -28,7 +28,7 @@ public class Board {
                                         String symbol = ((GamePiece) cell).getSymbol();
                                         System.out.print(symbol);
                                         int space = 4 - symbol.length();
-                                        for (int i = 0; i < space; i++) {
+                                        for (int i = 0; i <= space; i++) {
                                                 System.out.print(" ");
                                         }
                                 }
