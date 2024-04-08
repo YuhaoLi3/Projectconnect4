@@ -20,6 +20,7 @@ public class Board {
         }
 
         public void printBoard() {
+                printDragonTopBorder();
                 for (GamePiece[] row : grid) {
                         for (GamePiece cell : row) {
                                 if (cell == null) {
@@ -27,7 +28,8 @@ public class Board {
                                 } else {
                                         String symbol = ((GamePiece) cell).getSymbol();
                                         System.out.print(symbol);
-                                        int space = 4 - symbol.length();
+                                        //this help create the space between the emojis because sometimes they have different spaces.
+                                        int space = 4 - symbol.codePointCount(0, symbol.length());
                                         for (int i = 0; i < space; i++) {
                                                 System.out.print(" ");
                                         }
@@ -35,7 +37,62 @@ public class Board {
                         }
                         System.out.println();
                 }
+                printDragonBottomBorder();
         }
+        public boolean checkWin(GamePiece piece){
+                for(int row = 0;row<grid.length;row++){
+                        for (int col = 0; col < grid[0].length - 3; col++) {
+                                if (grid[row][col] == piece && grid[row][col + 1] == piece &&
+                                        grid[row][col + 2] == piece && grid[row][col + 3] == piece) {
+                                        return true;
+                                }
+
+                        }
+                }
+                for (int col = 0; col < grid[0].length; col++) {
+                        for (int row = 0; row < grid.length - 3; row++) {
+                                if (grid[row][col] == piece && grid[row + 1][col] == piece &&
+                                        grid[row + 2][col] == piece && grid[row + 3][col] == piece) {
+                                        return true;
+                                }
+                        }
+                }
+                for (int row = 0; row < grid.length - 3; row++) {
+                        for (int col = 0; col < grid[0].length - 3; col++) {
+                                if (grid[row][col] == piece && grid[row + 1][col + 1] == piece &&
+                                        grid[row + 2][col + 2] == piece && grid[row + 3][col + 3] == piece) {
+                                        return true;
+                                }
+                        }
+                }
+                for (int row = 3; row < grid.length; row++) {
+                        for (int col = 0; col < grid[0].length - 3; col++) {
+                                if (grid[row][col] == piece && grid[row - 1][col + 1] == piece &&
+                                        grid[row - 2][col + 2] == piece && grid[row - 3][col + 3] == piece) {
+                                        return true;
+                                }
+                        }
+                }
+                return false;
+        }
+
+        private void printDragonTopBorder() {
+                System.out.print("       /\\\n" +
+                        "         /  \\          ___/  \\\n" +
+                        "        /    \\________/       \\\n" +
+                        "       /      ^    ^      \\     /\\\n" +
+                        "~~~~~~\\    (o)      (o)    /~~~~~~\n" +
+                        "~~~~~~/ \\     vvvvvvvv     / \\~~~~~~\n");
+        }
+
+        private void printDragonBottomBorder() {
+                System.out.println( "   /     \\_____[||]_____/     \\\n" +
+                        "  /       \\___[||]___/       \\\n" +
+                        " /          ||||||          \\\n" +
+                        "/          (oooooo)          \\\n" +
+                        "\\________/~~~~~~~~~~\\________/");
+        }
+
 }
 
 

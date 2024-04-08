@@ -1,12 +1,11 @@
-public class Players implements GamePiece {
-    private String symbol;
+import java.util.Objects;
 
-    public Players(String symbol) {
-        this.symbol = symbol;
+public class Players extends GamePiece {
+        public Players(String symbol) {
+            super(symbol);
+        }
+
     }
 
-    @Override
-    public String getSymbol() {
-        return symbol;
-    }
-}
+
+
